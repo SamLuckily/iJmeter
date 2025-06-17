@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="61d26296-7e02-4c3f-8e85-b7fbd43ee78f" name="Changes" comment="" />
+    <list default="true" id="61d26296-7e02-4c3f-8e85-b7fbd43ee78f" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/automation/app-full-link-pressure-testing.jmx" beforeDir="false" afterPath="$PROJECT_DIR$/automation/app-full-link-pressure-testing.jmx" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -37,6 +39,7 @@
       <workItem from="1749893253290" duration="676000" />
       <workItem from="1749949662133" duration="4207000" />
       <workItem from="1749958896538" duration="1237000" />
+      <workItem from="1750171253696" duration="334000" />
     </task>
     <servers />
   </component>
