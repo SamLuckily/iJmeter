@@ -1,33 +1,81 @@
 #!/usr/bin/env bash
 
-# 压测脚本中设定的压测时间从Jenkins任务参数中传入，参数名称 duration
-# 生成的压测报告入口文件为 ./index.html
-#export jmx_filename="app-full-link-pressure-testing.jmx"
+# 必填 Jenkins 参数：线程数列表、持续时间、每秒并发启动速率
+# 示例：
+# thread_number_list="150 200 250 300"
+# duration=600
+# rampup_rate=2.5   # 每秒启动几个线程
+# jmeter_path=/your/jmeter/path
+
 export jmx_filename="tgfun-full-link-pressure-testing.jmx"
 
-# 需要在系统变量中定义jmeter根目录的位置，如下
-# export jmeter_path="/your jmeter path/"
-
-echo "自动化压测开始"
-
+echo "🔧 自动化压测开始"
 rm -f index.html
 echo "" >index.html
 
 rm -f *.jtl
 rm -rf web_*
-# 压测并发数列表
+
+# 拆分线程数组
 thread_number_array=($thread_number_list)
+
 for num in "${thread_number_array[@]}"; do
-  echo "压测并发数 ${num}"
-  # 定义jtl结果文件名与压测报告路径
+  echo "🚀 压测并发数 ${num}"
+
+  # ✅ 自动计算 Ramp-Up 时间 = 线程数 / 启动速率，向上取整
+  rampup=$(awk -v n=${num} -v rate=${rampup_rate} 'BEGIN { printf "%.0f", n / rate }')
+  echo "⏱️ Ramp-Up Period: ${rampup} 秒"
+
   export jtl_filename="test_${num}.jtl"
   export web_report_path_name="web_${num}"
 
-  # JMeter 静默压测 + 生成html压测报告
-  ${jmeter_path}/bin/jmeter -n -t ${jmx_filename} -l ${jtl_filename} -Jthread=${num} -Jduration=${duration} -e -o ${web_report_path_name}
-  echo "结束压测并发数 ${num}"
+  # 🔥 执行压测：使用 -J 参数传递 thread、duration、rampup
+  ${jmeter_path}/bin/jmeter \
+    -n -t ${jmx_filename} \
+    -l ${jtl_filename} \
+    -Jthread=${num} \
+    -Jduration=${duration} \
+    -Jrampup=${rampup} \
+    -e -o ${web_report_path_name}
+
+  # 追加报告入口
+  echo "✅ 完成并发数 ${num}，报告生成：${web_report_path_name}"
   echo "<a href='${web_report_path_name}'>${web_report_path_name}</a><br><br>" >>index.html
 
+  # ⏸️ 等待下一轮（可选）
   sleep ${polling}
 done
-echo "自动化压测全部结束"
+
+echo "🎉 自动化压测全部结束"
+
+# 压测脚本中设定的压测时间从Jenkins任务参数中传入，参数名称 duration
+# 生成的压测报告入口文件为 ./index.html
+#export jmx_filename="app-full-link-pressure-testing.jmx"
+#export jmx_filename="tgfun-full-link-pressure-testing.jmx"
+
+# 需要在系统变量中定义jmeter根目录的位置，如下
+# export jmeter_path="/your jmeter path/"
+
+#echo "自动化压测开始"
+#
+#rm -f index.html
+#echo "" >index.html
+#
+#rm -f *.jtl
+#rm -rf web_*
+## 压测并发数列表
+#thread_number_array=($thread_number_list)
+#for num in "${thread_number_array[@]}"; do
+#  echo "压测并发数 ${num}"
+#  # 定义jtl结果文件名与压测报告路径
+#  export jtl_filename="test_${num}.jtl"
+#  export web_report_path_name="web_${num}"
+#
+#  # JMeter 静默压测 + 生成html压测报告
+#  ${jmeter_path}/bin/jmeter -n -t ${jmx_filename} -l ${jtl_filename} -Jthread=${num} -Jduration=${duration} -e -o ${web_report_path_name}
+#  echo "结束压测并发数 ${num}"
+#  echo "<a href='${web_report_path_name}'>${web_report_path_name}</a><br><br>" >>index.html
+#
+#  sleep ${polling}
+#done
+#echo "自动化压测全部结束"
