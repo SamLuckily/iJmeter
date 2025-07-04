@@ -9,7 +9,7 @@
 
 set -e
 
-export jmx_filename="tgfun-full-link-pressure-testing.jmx"
+export jmx_filename="app-full-link-pressure-testing.jmx"
 
 echo "🔧 自动化压测开始"
 rm -f index.html
