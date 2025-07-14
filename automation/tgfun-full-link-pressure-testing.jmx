@@ -221,7 +221,7 @@ vars.put(&quot;encryptedPassword&quot;, encryptedBase64)
               <stringProp name="scriptLanguage">groovy</stringProp>
             </JSR223PreProcessor>
             <hashTree/>
-            <ConstantTimer guiclass="ConstantTimerGui" testclass="ConstantTimer" testname="固定定时器">
+            <ConstantTimer guiclass="ConstantTimerGui" testclass="ConstantTimer" testname="固定定时器" enabled="false">
               <stringProp name="ConstantTimer.delay">500</stringProp>
             </ConstantTimer>
             <hashTree/>
@@ -780,7 +780,7 @@ vars.put(&quot;debug_userSelectBody&quot;, userSelectJsonArray)
             </HeaderManager>
             <hashTree/>
           </hashTree>
-          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="大逃亡游戏地址">
+          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="大逃亡游戏地址" enabled="false">
             <stringProp name="HTTPSampler.domain">${host}</stringProp>
             <stringProp name="HTTPSampler.protocol">${protocol}</stringProp>
             <stringProp name="HTTPSampler.path">miniappapi/home/game/play/url</stringProp>
@@ -801,14 +801,14 @@ vars.put(&quot;debug_userSelectBody&quot;, userSelectJsonArray)
             </elementProp>
           </HTTPSamplerProxy>
           <hashTree>
-            <JSONPostProcessor guiclass="JSONPostProcessorGui" testclass="JSONPostProcessor" testname="JSON Extractor">
+            <JSONPostProcessor guiclass="JSONPostProcessorGui" testclass="JSONPostProcessor" testname="JSON Extractor" enabled="false">
               <stringProp name="JSONPostProcessor.referenceNames">game_url</stringProp>
               <stringProp name="JSONPostProcessor.jsonPathExprs">$.data.url</stringProp>
               <stringProp name="JSONPostProcessor.match_numbers">1</stringProp>
               <stringProp name="JSONPostProcessor.defaultValues">NOT_FOUND</stringProp>
             </JSONPostProcessor>
             <hashTree/>
-            <JSR223PostProcessor guiclass="TestBeanGUI" testclass="JSR223PostProcessor" testname="JSR223 PostProcessor">
+            <JSR223PostProcessor guiclass="TestBeanGUI" testclass="JSR223PostProcessor" testname="JSR223 PostProcessor" enabled="false">
               <stringProp name="cacheKey">true</stringProp>
               <stringProp name="filename"></stringProp>
               <stringProp name="parameters"></stringProp>
@@ -826,7 +826,7 @@ if (url != null) {
             </JSR223PostProcessor>
             <hashTree/>
           </hashTree>
-          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="大逃亡登录">
+          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="大逃亡登录" enabled="false">
             <stringProp name="HTTPSampler.domain">${host-game}</stringProp>
             <stringProp name="HTTPSampler.protocol">${protocol}</stringProp>
             <stringProp name="HTTPSampler.path">tgbotdataoshaservice/game/v1/login</stringProp>
@@ -847,7 +847,7 @@ if (url != null) {
             </elementProp>
           </HTTPSamplerProxy>
           <hashTree>
-            <JSONPostProcessor guiclass="JSONPostProcessorGui" testclass="JSONPostProcessor" testname="JSON Extractor">
+            <JSONPostProcessor guiclass="JSONPostProcessorGui" testclass="JSONPostProcessor" testname="JSON Extractor" enabled="false">
               <stringProp name="JSONPostProcessor.referenceNames">jwt_token</stringProp>
               <stringProp name="JSONPostProcessor.jsonPathExprs">$.data.jwt</stringProp>
               <stringProp name="JSONPostProcessor.match_numbers">1</stringProp>
@@ -855,7 +855,7 @@ if (url != null) {
             </JSONPostProcessor>
             <hashTree/>
           </hashTree>
-          <JMeter.plugins.functional.samplers.websocket.WebSocketSampler guiclass="JMeter.plugins.functional.samplers.websocket.WebSocketSamplerGui" testclass="JMeter.plugins.functional.samplers.websocket.WebSocketSampler" testname="登录-WebSocket">
+          <JMeter.plugins.functional.samplers.websocket.WebSocketSampler guiclass="JMeter.plugins.functional.samplers.websocket.WebSocketSamplerGui" testclass="JMeter.plugins.functional.samplers.websocket.WebSocketSampler" testname="登录-WebSocket" enabled="false">
             <stringProp name="serverAddress">game.tgfun.com</stringProp>
             <stringProp name="serverPort">443</stringProp>
             <stringProp name="implementation">RFC6455 (v13)</stringProp>
@@ -886,7 +886,7 @@ if (url != null) {
             </elementProp>
           </JMeter.plugins.functional.samplers.websocket.WebSocketSampler>
           <hashTree/>
-          <JMeter.plugins.functional.samplers.websocket.WebSocketSampler guiclass="JMeter.plugins.functional.samplers.websocket.WebSocketSamplerGui" testclass="JMeter.plugins.functional.samplers.websocket.WebSocketSampler" testname="下注-WebSocket">
+          <JMeter.plugins.functional.samplers.websocket.WebSocketSampler guiclass="JMeter.plugins.functional.samplers.websocket.WebSocketSamplerGui" testclass="JMeter.plugins.functional.samplers.websocket.WebSocketSampler" testname="下注-WebSocket" enabled="false">
             <stringProp name="serverAddress">game.tgfun.com</stringProp>
             <stringProp name="serverPort">443</stringProp>
             <stringProp name="implementation">RFC6455 (v13)</stringProp>
@@ -918,7 +918,7 @@ if (url != null) {
             </elementProp>
           </JMeter.plugins.functional.samplers.websocket.WebSocketSampler>
           <hashTree>
-            <RegexExtractor guiclass="RegexExtractorGui" testclass="RegexExtractor" testname="getErrorCode">
+            <RegexExtractor guiclass="RegexExtractorGui" testclass="RegexExtractor" testname="getErrorCode" enabled="false">
               <stringProp name="RegexExtractor.useHeaders">false</stringProp>
               <stringProp name="RegexExtractor.refname">errorCode</stringProp>
               <stringProp name="RegexExtractor.regex">m&quot;:&quot;betting&quot;,&quot;data&quot;:{&quot;errcode&quot;:(.*?),&quot;errmsg</stringProp>
@@ -929,17 +929,17 @@ if (url != null) {
             </RegexExtractor>
             <hashTree/>
           </hashTree>
-          <IfController guiclass="IfControllerPanel" testclass="IfController" testname="如果（If）控制器">
+          <IfController guiclass="IfControllerPanel" testclass="IfController" testname="如果（If）控制器" enabled="false">
             <stringProp name="IfController.condition">${__jexl3(${errorCode} == 5003)}</stringProp>
             <boolProp name="IfController.evaluateAll">false</boolProp>
             <boolProp name="IfController.useExpression">true</boolProp>
           </IfController>
           <hashTree>
-            <WhileController guiclass="WhileControllerGui" testclass="WhileController" testname="While控制器">
+            <WhileController guiclass="WhileControllerGui" testclass="WhileController" testname="While控制器" enabled="false">
               <stringProp name="WhileController.condition">${__jexl3(${errorCode} == 5003)}</stringProp>
             </WhileController>
             <hashTree>
-              <JMeter.plugins.functional.samplers.websocket.WebSocketSampler guiclass="JMeter.plugins.functional.samplers.websocket.WebSocketSamplerGui" testclass="JMeter.plugins.functional.samplers.websocket.WebSocketSampler" testname="下注-WebSocket">
+              <JMeter.plugins.functional.samplers.websocket.WebSocketSampler guiclass="JMeter.plugins.functional.samplers.websocket.WebSocketSamplerGui" testclass="JMeter.plugins.functional.samplers.websocket.WebSocketSampler" testname="下注-WebSocket" enabled="false">
                 <stringProp name="serverAddress">game.tgfun.com</stringProp>
                 <stringProp name="serverPort">443</stringProp>
                 <stringProp name="implementation">RFC6455 (v13)</stringProp>
@@ -971,7 +971,7 @@ if (url != null) {
                 </elementProp>
               </JMeter.plugins.functional.samplers.websocket.WebSocketSampler>
               <hashTree>
-                <RegexExtractor guiclass="RegexExtractorGui" testclass="RegexExtractor" testname="getErrorCode">
+                <RegexExtractor guiclass="RegexExtractorGui" testclass="RegexExtractor" testname="getErrorCode" enabled="false">
                   <stringProp name="RegexExtractor.useHeaders">false</stringProp>
                   <stringProp name="RegexExtractor.refname">errorCode</stringProp>
                   <stringProp name="RegexExtractor.regex">m&quot;:&quot;betting&quot;,&quot;data&quot;:{&quot;errcode&quot;:(.*?),&quot;errmsg</stringProp>
@@ -982,7 +982,7 @@ if (url != null) {
                 </RegexExtractor>
                 <hashTree/>
               </hashTree>
-              <ConstantTimer guiclass="ConstantTimerGui" testclass="ConstantTimer" testname="固定定时器">
+              <ConstantTimer guiclass="ConstantTimerGui" testclass="ConstantTimer" testname="固定定时器" enabled="false">
                 <stringProp name="ConstantTimer.delay">5000</stringProp>
               </ConstantTimer>
               <hashTree/>
